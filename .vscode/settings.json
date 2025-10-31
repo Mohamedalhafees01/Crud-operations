@@ -1,0 +1,4 @@
+{
+    "CodeGPT.apiKey": "Anthropic",
+    "scss.lint.unknownAtRules": "ignore"
+}
