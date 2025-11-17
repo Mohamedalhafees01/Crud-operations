@@ -1,104 +1,126 @@
-<form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="bg-white shadow-lg rounded-xl max-w-md mx-auto p-8 mt-12 border border-gray-200">
-  <h2 class="mb-6 text-2xl font-bold text-center text-gray-800">Sign Up</h2>
-  
-  <!-- Username -->
-  <div class="mb-4">
-    <label class="block text-gray-700 font-semibold mb-1">Username</label>
-    <input formControlName="username"
-           class="form-control block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500 transition duration-300"
-           [ngClass]="{'is-invalid border-red-500': signupForm.get('username')?.invalid && signupForm.get('username')?.touched}">
-    <div *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched" class="text-red-500 text-xs mt-1">
-      Username is required.
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-300 p-6">
+  <div class="relative w-full max-w-2xl">
+
+    <!-- Glassmorphism Card -->
+    <div class="backdrop-blur-xl bg-white/70 border border-white/30 shadow-2xl rounded-2xl p-10">
+
+      <!-- Header -->
+      <h2 class="text-3xl font-extrabold text-gray-800 text-center mb-6 tracking-tight">
+        Create Your Account
+      </h2>
+      <p class="text-center text-gray-600 mb-8">
+        Join us and explore a seamless experience.
+      </p>
+
+      <!-- Form -->
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="space-y-6">
+
+        <!-- Grid Layout -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+          <!-- Username -->
+          <div>
+            <label class="block text-gray-700 font-semibold mb-1">Username</label>
+            <input formControlName="username"
+                   class="w-full px-4 py-3 rounded-xl border bg-white/80 focus:outline-none 
+                          focus:ring-2 focus:ring-blue-500 transition"
+                   [ngClass]="{'border-red-500': signupForm.get('username')?.invalid && signupForm.get('username')?.touched}">
+            <p *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched"
+               class="text-red-500 text-xs mt-1">
+              Username is required.
+            </p>
+          </div>
+
+          <!-- Full Name -->
+          <div>
+            <label class="block text-gray-700 font-semibold mb-1">Full Name</label>
+            <input formControlName="fullName"
+                   class="w-full px-4 py-3 rounded-xl border bg-white/80 focus:ring-2 focus:ring-blue-500"
+                   [ngClass]="{'border-red-500': signupForm.get('fullName')?.invalid && signupForm.get('fullName')?.touched}">
+            <p *ngIf="signupForm.get('fullName')?.invalid && signupForm.get('fullName')?.touched"
+               class="text-red-500 text-xs mt-1">
+              Full Name is required.
+            </p>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label class="block text-gray-700 font-semibold mb-1">Email</label>
+            <input type="email" formControlName="email"
+                   class="w-full px-4 py-3 rounded-xl border bg-white/80 focus:ring-2 focus:ring-blue-500"
+                   [ngClass]="{'border-red-500': signupForm.get('email')?.invalid && signupForm.get('email')?.touched}">
+            <p *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched"
+               class="text-red-500 text-xs mt-1">
+              Enter a valid email.
+            </p>
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <label class="block text-gray-700 font-semibold mb-1">Phone Number</label>
+            <input formControlName="phone"
+                   class="w-full px-4 py-3 rounded-xl border bg-white/80 focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <!-- Date of Birth -->
+          <div>
+            <label class="block text-gray-700 font-semibold mb-1">Date of Birth</label>
+            <input type="date" formControlName="dob"
+                   class="w-full px-4 py-3 rounded-xl border bg-white/80 focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <!-- Country -->
+          <div>
+            <label class="block text-gray-700 font-semibold mb-1">Country</label>
+            <select formControlName="country"
+                    class="w-full px-4 py-3 rounded-xl border bg-white/80 focus:ring-2 focus:ring-blue-500">
+              <option value="">Select country</option>
+              <option value="India">India</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Singapore">Singapore</option>
+              <option value="Malaysia">Malaysia</option>
+              <option value="UAE">UAE</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Password (full width) -->
+        <div>
+          <label class="block text-gray-700 font-semibold mb-1">Password</label>
+          <input type="password" formControlName="password"
+                 class="w-full px-4 py-3 rounded-xl border bg-white/80 focus:ring-2 focus:ring-blue-500"
+                 [ngClass]="{'border-red-500': signupForm.get('password')?.invalid && signupForm.get('password')?.touched}">
+          <p *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched"
+             class="text-red-500 text-xs mt-1">
+            Must include uppercase, number, special character & min 8 chars.
+          </p>
+        </div>
+
+        <!-- Address -->
+        <div>
+          <label class="block text-gray-700 font-semibold mb-1">Address</label>
+          <textarea rows="3" formControlName="address"
+                    class="w-full px-4 py-3 rounded-xl border bg-white/80 focus:ring-2 focus:ring-blue-500"></textarea>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit"
+          class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg
+                 transition transform hover:scale-[1.02] active:scale-95"
+          [disabled]="signupForm.invalid">
+          Create Account
+        </button>
+
+        <!-- API Messages -->
+        <div *ngIf="apiErrorMessage" class="text-red-600 font-bold text-center">
+          {{ apiErrorMessage }}
+        </div>
+        <div *ngIf="apiSuccessMessage" class="text-green-600 font-bold text-center">
+          {{ apiSuccessMessage }}
+        </div>
+
+      </form>
     </div>
   </div>
-
-  <!-- Password -->
-  <div class="mb-4">
-    <label class="block text-gray-700 font-semibold mb-1">Password</label>
-    <input type="password"
-           formControlName="password"
-           class="form-control block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500 transition duration-300"
-           [ngClass]="{'is-invalid border-red-500': signupForm.get('password')?.invalid && signupForm.get('password')?.touched}">
-    <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-red-500 text-xs mt-1">
-      Password must be alphanumeric, one uppercase, one special character, and at least 8 characters.
-    </div>
-  </div>
-
-  <!-- Full Name -->
-  <div class="mb-4">
-    <label class="block text-gray-700 font-semibold mb-1">Full Name</label>
-    <input formControlName="fullName"
-           class="form-control block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500 transition duration-300"
-           [ngClass]="{'is-invalid border-red-500': signupForm.get('fullName')?.invalid && signupForm.get('fullName')?.touched}">
-    <div *ngIf="signupForm.get('fullName')?.invalid && signupForm.get('fullName')?.touched" class="text-red-500 text-xs mt-1">
-      Full Name is required.
-    </div>
-  </div>
-
-  <!-- Date of Birth -->
-  <div class="mb-4">
-    <label class="block text-gray-700 font-semibold mb-1">Date of Birth</label>
-    <input type="date"
-           formControlName="dob"
-           class="form-control block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500 transition duration-300">
-  </div>
-
-  <!-- Address -->
-  <div class="mb-4">
-    <label class="block text-gray-700 font-semibold mb-1">Address</label>
-    <input formControlName="address"
-           class="form-control block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500 transition duration-300">
-  </div>
-
-  <!-- Country -->
-  <div class="mb-4">
-    <label class="block text-gray-700 font-semibold mb-1">Country</label>
-    <select formControlName="country"
-            class="form-control block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500 transition duration-300">
-      <option value="">Select country</option>
-      <option value="India">India</option>
-      <option value="Thailand">Thailand</option>
-      <option value="Singapore">Singapore</option>
-      <option value="Malaysia">Malaysia</option>
-      <option value="UAE">UAE</option>
-    </select>
-  </div>
-
-  <!-- Email -->
-  <div class="mb-4">
-    <label class="block text-gray-700 font-semibold mb-1">Email</label>
-    <input formControlName="email"
-           type="email"
-           class="form-control block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500 transition duration-300"
-           [ngClass]="{'is-invalid border-red-500': signupForm.get('email')?.invalid && signupForm.get('email')?.touched}">
-    <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-red-500 text-xs mt-1">
-      Enter a valid email.
-    </div>
-  </div>
-
-  <!-- Phone Number -->
-  <div class="mb-6">
-    <label class="block text-gray-700 font-semibold mb-1">Phone Number</label>
-    <input formControlName="phone"
-           class="form-control block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500 transition duration-300">
-  </div>
-
-  <!-- Submit Button -->
-  <button type="submit"
-    class="btn btn-primary w-full py-2 mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded shadow transition-transform transform hover:scale-105 active:scale-95 transition duration-300 ease-in-out"
-    [disabled]="signupForm.invalid">Sign Up
-  </button>
-
-  <!-- Messages -->
-  <div *ngIf="apiErrorMessage" class="text-red-600 font-semibold my-2">
-    {{ apiErrorMessage }}
-  </div>
-  <div *ngIf="apiSuccessMessage" class="text-green-600 font-semibold my-2">
-    {{ apiSuccessMessage }}
-  </div>
-</form>
-
-
-
-
-
+</div>
